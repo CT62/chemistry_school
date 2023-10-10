@@ -23,12 +23,12 @@ export default function Profile(){
 		</div>
 		<div className="py-5 flex justify-center">
 			<div className="text-white font-bold text-center text-2xl">
-				Hello! I'm Lena Kadri, the proud owner of Chemistry School of Growth.
+				Hello! I&apos;m Lena Kadri, the proud owner of Chemistry School of Growth.
 			</div>
 		</div>
 		<div className="py-2 flex justify-center">
 			<div className="text-gray-300 font-semibold text-center">
-			With a Ph.D. earned at Trinity College and three years of teaching experience, I've cultivated a passion for guiding students through the fascinating world of senior cycle chemistry.
+			With a Ph.D. earned at Trinity College and three years of teaching experience, I&apos;ve cultivated a passion for guiding students through the fascinating world of senior cycle chemistry.
 			</div>
 		</div>
 		<div className="flex justify-center items-center gap-6 my-6">
@@ -54,6 +54,7 @@ export default function Profile(){
 	</>
 
 )}
+
 
 
 
