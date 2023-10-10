@@ -10,7 +10,7 @@ export default function CallToAction(){
         </div>
       <div className="relative">
         <div className="mt-6 m-auto space-y-6 md:w-8/12 lg:w-7/12">
-          <h1 className="text-center text-4xl font-bold text-gray-800 dark:text-white md:text-5xl">Chemistry School of Growth</h1>
+          <h1 className="text-center text-4xl font-bold text-white md:text-5xl">Chemistry School of Growth</h1>
           <div className="text-center py-2">
 		<p className="text-gray-300">want to</p>
 		<div className="text-white text-2xl font-bold">
