@@ -6,6 +6,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'C.S.G',
+  description: 'Chemistry school of Growth'
 }
 
 export default function RootLayout({
@@ -19,3 +20,4 @@ export default function RootLayout({
     </html>
   )
 }
+
