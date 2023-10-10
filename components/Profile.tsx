@@ -12,11 +12,8 @@ export default function Profile(){
 		<div className="px-5 flex justify-center">
 		<div className="border-1-4 lg:w-1/2 w-auto p-4 bg-gray-800 rounded border-2 border-gray-700">
 		<div className="flex justify-center">
-			<div className="m-0">
-				<Image src="/Profile.jpg"
-				width={32}
-				height={32}
-				alt="Profile Picture"
+			<div className="m-0 h-32 w-32">
+				<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5JtFaSXuVEtVxM4fTCy1ZC7gev0MfLtvPEmsBUUVZ0Q&s"
 				className="rounded-full"
 				 />
 			</div>
