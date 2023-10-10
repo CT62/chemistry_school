@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 import {motion} from "framer-motion"
 export default function Profile(){
 	return(
@@ -11,8 +12,13 @@ export default function Profile(){
 		<div className="px-5 flex justify-center">
 		<div className="border-1-4 lg:w-1/2 w-auto p-4 bg-gray-800 rounded border-2 border-gray-700">
 		<div className="flex justify-center">
-			<div className="h-32 w-32 m-0">
-				<img src="/Profile.jpg" className="rounded-full" />
+			<div className="m-0">
+				<Image src="/Profile.jpg"
+				width={32}
+				height={32}
+				alt="Profile Picture"
+				className="rounded-full"
+				 />
 			</div>
 		</div>
 		<div className="py-5 flex justify-center">
