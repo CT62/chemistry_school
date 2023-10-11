@@ -5,7 +5,6 @@ export default function Courses(){
 	return(
 	<>
 	<Navbar />
-	<courses />
 	</>
 	)
 }
