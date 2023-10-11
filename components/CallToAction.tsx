@@ -3,7 +3,7 @@ import { TypeAnimation } from 'react-type-animation';
 
 export default function CallToAction() {
   return (
-    <div className="relative py-16 bg-gradient-to-r from-blue-500 to-cyan-400">
+    <div className="relative py-16 bg-gradient-to-r from-blue-800 to-cyan-400">
       <div className="max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
         <div className="absolute inset-0 grid grid-cols-2 -space-x-52">
           <div className="blur-[106px] h-56 bg-gradient-to-br to-[#51adc6] from-[#9bcee3]"></div>
@@ -42,3 +42,4 @@ export default function CallToAction() {
     </div>
   );
 }
+
