@@ -10,7 +10,7 @@ export default function Profile(){
     		transition={{ duration: 1 }}
   		>
 		<div className="px-5 flex justify-center">
-		<div className="border-1-4 lg:w-1/2 w-auto p-4 bg-gray-800 rounded border-2 border-gray-700">
+		<div className="border-1-4 lg:w-1/2 w-auto p-4">
 		<div className="flex justify-center">
 			<div className="m-0 h-32 w-32">
 				<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5JtFaSXuVEtVxM4fTCy1ZC7gev0MfLtvPEmsBUUVZ0Q&s"
@@ -19,12 +19,12 @@ export default function Profile(){
 			</div>
 		</div>
 		<div className="py-5 flex justify-center">
-			<div className="text-white font-bold text-center text-2xl">
+			<div className="text-black font-bold text-center text-2xl">
 				Hello! I&apos;m Lena Kadri, the proud owner of Chemistry School of Growth.
 			</div>
 		</div>
 		<div className="py-2 flex justify-center">
-			<div className="text-gray-300 font-semibold text-center">
+			<div className="text-black font-semibold text-center">
 			With a Ph.D. earned at Trinity College and three years of teaching experience, I&apos;ve cultivated a passion for guiding students through the fascinating world of senior cycle chemistry.
 			</div>
 		</div>
@@ -51,8 +51,3 @@ export default function Profile(){
 	</>
 
 )}
-
-
-
-
-
