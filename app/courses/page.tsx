@@ -1,10 +1,13 @@
 import './courses.css'
 import Navbar from '@/components/Navbar'
-import courses from '@/components/Courses'
+import CourseCards from '@/components/CourseCards'
 export default function Courses(){
 	return(
 	<>
-	<Navbar />
+	<div className="pb-20">
+		<Navbar />
+	</div>
+	<CourseCards />
 	</>
 	)
 }

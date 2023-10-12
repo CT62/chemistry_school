@@ -30,7 +30,7 @@ export default function CallToAction() {
             </div>
           </div>
           <div className="flex flex-wrap justify-center gap-6">
-            <a href="#" className="cta-button">
+            <a href="/courses" className="cta-button">
               <span className="text-base font-semibold text-dark">Get Started</span>
             </a>
             <a href="about" className="cta-button cta-secondary">
