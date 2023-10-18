@@ -21,7 +21,7 @@ export default function CourseCards({title,points}:Props){
   	  </ul>
 	  </div>
  	 <div className="px-6 pt-4 pb-2">
-  	  <button className="inline-block bg-cyan-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">Add to cart</button>
+  	  <button className="inline-block bg-sky-500 hover:bg-sky-600 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">Add to cart</button>
   	</div>
 	</div>	
     )
