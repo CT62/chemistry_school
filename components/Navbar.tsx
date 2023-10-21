@@ -32,8 +32,8 @@ export default function Header(){
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#blog" className="block md:px-4 transition hover:text-primary">
-                                        <span>Cart</span>
+                                    <a href="/about" className="block md:px-4 transition hover:text-primary">
+                                        <span>About</span>
                                     </a>
                                 </li>
                             </ul>
