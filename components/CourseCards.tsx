@@ -12,7 +12,8 @@ interface Props {
 
 const CourseCard = ({ fakeprice,title, points, time, price }) => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
-
+  const noPoints=points[0]=="" ? true: false;
+  console.log(noPoints)
 
   const handleAddToCart = () => {
     setIsAddedToCart(!isAddedToCart);
@@ -25,8 +26,9 @@ const CourseCard = ({ fakeprice,title, points, time, price }) => {
           <h2 className="text-xl font-bold">{title}</h2>
         </div>
         <div className="points-section mb-2 pt-3">
-         <ul className="list-disc pl-5">
-              {points.map((point, index) => (
+		 
+         <ul className={`${!noPoints && 'list-disc'} pl-5`}>
+              {points.map((point: string, index:number) => (
                 <li key={index}>{point}</li>
               ))}
             </ul>
@@ -38,10 +40,10 @@ const CourseCard = ({ fakeprice,title, points, time, price }) => {
       <hr className="my-4 border-gray-300" />
       <div className="bottom-section flex justify-between items-end">
         <div className="price-section flex">
-          <p className="text-gray-400 relative mr-4">
-            <span className="line-through-text">{fakeprice}</span>
+          <p className="text-gray-400 relative mr-2">
+            <span className="line-through-text">€{fakeprice}</span>
           </p>
-          <p className="text-black font-semibold">{price}</p>
+          <p className="text-black font-semibold">€{price}</p>
         </div>
         <style jsx>{`
           .line-through-text::after {
@@ -55,8 +57,8 @@ const CourseCard = ({ fakeprice,title, points, time, price }) => {
         `}</style>
         <div className="add-to-cart-section">
           <button
-            className={`bg-cyan-500 text-white px-4 py-2 rounded focus:outline-none transition duration-300 hover:bg-cyan-600 ${
-              isAddedToCart ? 'bg-red-500' : ''
+            className={`bg-gray-300 text-gray-900 px-4 py-2 rounded focus:outline-none transition duration-300 hover:bg-gray-400 ${
+              isAddedToCart ? 'text-red' : ''
             }`}
             onClick={handleAddToCart}
           >
@@ -69,3 +71,4 @@ const CourseCard = ({ fakeprice,title, points, time, price }) => {
 };
 
 export default CourseCard;
+
