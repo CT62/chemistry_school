@@ -58,7 +58,7 @@ const CourseCard = ({ fakeprice,title, points, time, price }) => {
         <div className="add-to-cart-section">
           <button
             className={`bg-gray-300 text-gray-900 px-4 py-2 rounded focus:outline-none transition duration-300 hover:bg-gray-400 ${
-              isAddedToCart ? 'text-red' : ''
+              isAddedToCart ? '' : ''
             }`}
             onClick={handleAddToCart}
           >
