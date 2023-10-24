@@ -10,7 +10,7 @@ interface Props {
   fakeprice: string
 }
 
-const CourseCard = ({ fakeprice:string,title:string, points:string, time:string, price:string }) => {
+const CourseCard = ({ fakeprice,title, points, time, price }:Props) => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const noPoints=points[0]=="" ? true: false;
   console.log(noPoints)
