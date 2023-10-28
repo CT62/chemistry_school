@@ -2,6 +2,7 @@ import './courses.css'
 import Navbar from '@/components/Navbar'
 import CourseCards from '@/components/CourseCards'
 export default function Courses(){
+
 	return(
 	<>
 	<div className="pb-20">
@@ -21,15 +22,13 @@ export default function Courses(){
 	</div>
 	<div className="pt-14">
 	<div className="bg-white p-6">
-		<div className="text-black font-bold text-3xl pb-4 flex justify-center ">Whats included in each course: </div>
-			<li className="flex justify-center pb-2.5">Notes</li>
-			<li className="flex justify-center pb-2.5">Exam questions & solutions</li>
-			<li className="flex justify-center pb-2.5">Unlimited access to 1-on-1 questions and solutions by emailing/messaging me directly</li>
-
-			<li className="flex justify-center pb-2.5">On demand access to recordings for the duration of your Leaving Cert</li>
-			<li className="flex justify-center pb-2.5">Free video solutions to material covered outside of the course content</li>
-			<li className="flex justify-center pb-2.5">Tips on how to get a H1</li>
-	
+		<div className="text-center text-black font-bold text-3xl pb-4">Whats included in each course:</div>
+			<li className="sm:flex sm:justify-center pb-2.5">Notes</li>
+			<li className="sm:flex sm:justify-center pb-2.5">Exam questions & solutions</li>
+			<li className="sm:flex sm:justify-center pb-2.5">Unlimited access to 1-on-1 questions and solutions by emailing/messaging me directly</li>
+			<li className="sm:flex sm:justify-center pb-2.5">On demand access to recordings for the duration of your Leaving Cert</li>
+			<li className="sm:flex sm:justify-center pb-2.5">Free video solutions to material covered outside of the course content</li>
+			<li className="sm:flex sm:justify-center pb-2.5">Tips on how to get a H1</li>
 	</div>
 	</div>
 	</>

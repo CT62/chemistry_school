@@ -1,5 +1,4 @@
 'use client'
-import chem_image from '@/components/chemsitry_graphic2.png'
 import React, { useState } from 'react';
 
 interface Props {
@@ -34,8 +33,9 @@ const CourseCard = ({ fakeprice,title, points, time, price }:Props) => {
             </ul>
         </div>
       </div>
-	<div className="pt-4">
+	<div className="flex justify-between pt-4">
 	<p>🕓 {time}hrs </p>
+  <div>★ ★ ★ ★ ★</div>
 	</div>
       <hr className="my-4 border-gray-300" />
       <div className="bottom-section flex justify-between items-end">
