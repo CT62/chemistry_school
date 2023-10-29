@@ -1,6 +1,8 @@
 import './courses.css'
 import Navbar from '@/components/Navbar'
 import CourseCards from '@/components/CourseCards'
+import { motion } from 'framer-motion'
+
 export default function Courses(){
 
 	return(
