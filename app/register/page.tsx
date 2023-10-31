@@ -16,7 +16,7 @@ export default function Registed(){
 		e.preventDefault();
 		const response = await fetch('/api/register',
 			{method: 'POST',
-			body: JSON.stringify({data})
+				body: JSON.stringify({data})
 
 			}
 		)
