@@ -61,7 +61,7 @@ export default function Registed(){
  
             <div>
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                Email address
+                Username
               </label>
               <div className="mt-2">
                 <input

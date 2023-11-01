@@ -1,4 +1,5 @@
 'use client'
+import Link from 'next/link';
 import React, { useState } from 'react';
 
 interface Props {
@@ -6,30 +7,39 @@ interface Props {
   points: string[];
   time: string;
   price: string;
-  fakeprice: string
+  fakeprice: string;
+  titledesc: string
 }
 
-const CourseCard = ({ fakeprice,title, points, time, price }:Props) => {
+const CourseCard = ({ fakeprice,title, points, time, price, titledesc }:Props) => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
+  const [isFullScreen, setIsFullScreen] = useState(false);
   const noPoints=points[0]=="" ? true: false;
-  console.log(noPoints)
 
   const handleAddToCart = () => {
     setIsAddedToCart(!isAddedToCart);
   };
 
+  const handleFullScreen = () =>{
+    setIsFullScreen(!isFullScreen);
+    console.log(isFullScreen)
+  };
+
   return (
     <div className="bg-white p-6 rounded-lg shadow-md flex flex-col">
       <div className="content-section flex-grow">
-        <div className="title-section mb-2">
-          <h2 className="text-xl font-bold">{title}</h2>
+        <div className="title-section">
+          <h2 className="text-xl font-bold text-sm pb-2">{title}</h2>
         </div>
+        <div className="text-gray-700 font-light italic">{titledesc}</div>
         <div className="points-section mb-2 pt-3">
 		 
          <ul className={`${!noPoints && 'list-disc'} pl-5`}>
               {points.map((point: string, index:number) => (
                 <li key={index}>{point}</li>
               ))}
+              {//<li>{points[0].slice(0,6)}...</li>
+              }
             </ul>
         </div>
       </div>
@@ -42,7 +52,8 @@ const CourseCard = ({ fakeprice,title, points, time, price }:Props) => {
 </svg>
 	  <p>{time}hrs </p>
   </div>
-  <div className="flex"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" className="mt-[0.25rem] mr-0.5" viewBox="0 0 16 16">
+    <div className="text-yellow-400">
+    <div className="flex"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" className="mt-[0.25rem] mr-0.5" viewBox="0 0 16 16">
   <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
 </svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" className="mr-0.5 mt-[0.25rem]" viewBox="0 0 16 16">
   <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
@@ -51,9 +62,12 @@ const CourseCard = ({ fakeprice,title, points, time, price }:Props) => {
 </svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" className="mr-0.5 mt-[0.25rem]" viewBox="0 0 16 16">
   <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
 </svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" className="mr-0.5 mt-[0.25rem]" viewBox="0 0 16 16">
-  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-</svg></div>
+  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/> 
+</svg>
+  <div className="text-black pl-1">(</div><button className="text-black underline underline-offset-1">21 reviews</button><div className="text-black">)</div>
+  </div> 
 	</div>
+    </div>
       <hr className="my-4 border-gray-300" />
       <div className="bottom-section flex justify-between items-end">
         <div className="price-section flex">
@@ -73,15 +87,17 @@ const CourseCard = ({ fakeprice,title, points, time, price }:Props) => {
           }
         `}</style>
         <div className="add-to-cart-section">
+          {
           <button
-            className={`bg-gray-300 text-gray-900 px-4 py-2 rounded focus:outline-none transition duration-300 hover:bg-gray-400 ${
+            className={`flex bg-gray-300 text-gray-900 px-4 py-2 rounded focus:outline-none transition hover:bg-gray-400 ${
               isAddedToCart ? '' : ''
             }`}
             onClick={handleAddToCart}
           >
             {isAddedToCart ? 'Remove from Cart' : 'Add to Cart'}
           </button>
-        </div>
+          }
+        </div> 
       </div>
     </div>
   );
