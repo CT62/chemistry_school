@@ -1,5 +1,4 @@
 'use client'
-import Link from 'next/link';
 import React, { useState } from 'react';
 
 interface Props {
@@ -13,18 +12,16 @@ interface Props {
 
 const CourseCard = ({ fakeprice,title, points, time, price, titledesc }:Props) => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
-  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [showReviews, setReviews] = useState(false);
   const noPoints=points[0]=="" ? true: false;
 
   const handleAddToCart = () => {
     setIsAddedToCart(!isAddedToCart);
   };
 
-  const handleFullScreen = () =>{
-    setIsFullScreen(!isFullScreen);
-    console.log(isFullScreen)
+  const toggleReviews = () => {
+    setReviews(!showReviews);
   };
-
   return (
     <div className="bg-white p-6 rounded-lg shadow-md flex flex-col">
       <div className="content-section flex-grow">
@@ -38,8 +35,6 @@ const CourseCard = ({ fakeprice,title, points, time, price, titledesc }:Props) =
               {points.map((point: string, index:number) => (
                 <li key={index}>{point}</li>
               ))}
-              {//<li>{points[0].slice(0,6)}...</li>
-              }
             </ul>
         </div>
       </div>
@@ -64,9 +59,19 @@ const CourseCard = ({ fakeprice,title, points, time, price, titledesc }:Props) =
 </svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" className="mr-0.5 mt-[0.25rem]" viewBox="0 0 16 16">
   <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/> 
 </svg>
-  <div className="text-black pl-1">(</div><button className="text-black underline underline-offset-1">21 reviews</button><div className="text-black">)</div>
+  <div className="text-black pl-1">(</div><button onClick={toggleReviews} className="text-black underline underline-offset-1">21 reviews</button><div className="text-black">)</div>
   </div> 
 	</div>
+        {showReviews && (
+        <div className=" w-96 h-96 flex items-center justify-center">
+          <div className="bg-white p-6 rounded shadow-md">
+            <p className="text-lg font-bold">Reviews</p>
+            <button onClick={toggleReviews} className="flex justify-center">
+              Show less...
+            </button>
+          </div>
+        </div>
+      )}
     </div>
       <hr className="my-4 border-gray-300" />
       <div className="bottom-section flex justify-between items-end">
