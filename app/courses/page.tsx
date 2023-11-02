@@ -10,8 +10,8 @@ export default function Courses(){
 	<div className="pb-20">
 		<Navbar />
 	</div>
-  <div className="bg-[url(wallpaper.png)] bg-center">
-	<div className="py-16 text-black font-bold text-5xl flex justify-center">Courses</div>
+  <div className="bg-[#90cee7] bg-center">
+	<div className="py-16 text-white font-bold text-5xl flex justify-center">Courses</div>
 	<div className="container mx-auto">
 	<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
 	<CourseCards fakeprice="175" price="125" time="10" title="Organic chemistry II" points={["alcohols","reactions of alcohols","aldehydes","ketones","carboxylic acids","esters","solubility and boiling points of homologous series","organic synthetic routes"]} titledesc='' />
