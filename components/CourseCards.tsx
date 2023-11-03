@@ -75,9 +75,9 @@ const CourseCard = ({ fakeprice,title, points, time, price, titledesc, reviews }
       )}
     </div>
       <hr className="my-4 border-gray-300" />
-      <div className="bottom-section flex justify-between items-end">
+      <div className="bottom-section flex justify-between items-end ">
         <div className="price-section flex">
-          <p className="text-gray-400 relative mr-2">
+          <p className="text-gray-400 relative mb-1 mr-2">
             <span className="line-through-text">€{fakeprice}</span>
           </p>
           <p className="text-black font-semibold">€{price}</p>
@@ -95,7 +95,7 @@ const CourseCard = ({ fakeprice,title, points, time, price, titledesc, reviews }
         <div className="add-to-cart-section">
           {
           <button
-            className='flex bg-gradient-to-r from-cyan-500 to-blue-500 shadow-lg shadow-cyan-400/50 text-gray-900 px-4 py-2 rounded focus:outline-none transition hover:bg-gray-400 text-white'
+            className='flex bg-gradient-to-r from-cyan-500 to-blue-500 text-gray-900 px-4 py-2 rounded focus:outline-none transition hover:bg-gray-400 text-white font-semibold'
             onClick={handleAddToCart}
           >
             Buy now
