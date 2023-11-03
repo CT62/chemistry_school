@@ -95,12 +95,10 @@ const CourseCard = ({ fakeprice,title, points, time, price, titledesc, reviews }
         <div className="add-to-cart-section">
           {
           <button
-            className={`flex bg-gray-300 text-gray-900 px-4 py-2 rounded focus:outline-none transition hover:bg-gray-400 ${
-              isAddedToCart ? '' : ''
-            }`}
+            className='flex bg-gradient-to-r from-cyan-500 to-blue-500 shadow-lg shadow-cyan-400/50 text-gray-900 px-4 py-2 rounded focus:outline-none transition hover:bg-gray-400 text-white'
             onClick={handleAddToCart}
           >
-            {isAddedToCart ? 'Remove from Cart' : 'Add to Cart'}
+            Buy now
           </button>
           }
         </div> 
