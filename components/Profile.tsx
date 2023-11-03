@@ -6,13 +6,13 @@ export default function Profile(){
 		<motion.div
 		initial={{ opacity: 0, scale: 0.5 }}
    		 animate={{ opacity: 1, scale: 1 }}
-    		transition={{ duration: 1 }}
+    		transition={{ duration: 0.8 }}
   		>
 		<div className="px-5 flex justify-center">
 		<div className="border-1-4 lg:w-1/2 w-auto p-4">
 		<div className="flex justify-center">
 			<div className="m-0 h-32 w-32">
-				<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5JtFaSXuVEtVxM4fTCy1ZC7gev0MfLtvPEmsBUUVZ0Q&s"
+				<img src="https://media.licdn.com/dms/image/D4E03AQGI8jzfHXsTIg/profile-displayphoto-shrink_800_800/0/1688475014905?e=2147483647&v=beta&t=zJP08ixifx7o7RypgO8tzOnAgi4y2zOx-bY5JaTs264"
 				className="rounded-full"
 				 />
 			</div>
