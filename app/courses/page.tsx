@@ -10,10 +10,14 @@ export default function Courses(){
 	<div className="pb-20">
 		<Navbar />
 	</div>
-  <div className="bg-[#90cee7]">
-	<div className="py-16 text-white font-bold text-5xl flex justify-center">Courses</div>
+    <div aria-hidden="true" className="absolute inset-0 grid grid-cols-3 -space-x-52 ">
+            <div className="blur-[106px] h-56 bg-gradient-to-br from-primary to-cyan-400"></div>
+            <div className="blur-[106px] h-32 bg-gradient-to-r from-cyan-500 to-sky-300"></div>
+            <div className="blur-[106px] h-32 bg-gradient-to-r from-cyan-500 to-sky-300"></div>
+        </div>
+	<div className="relative py-16 text-white font-bold text-5xl flex justify-center">Courses</div>
 	<div className="container mx-auto">
-	<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+	<div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
   <CourseCards fakeprice="125" price="75" time="6" title="Organic chemistry I" points={["intro to organic chemistry","hydrocarbons: alkanes","reactions of alkanes","structural isomers and IUPAC","chloroalkanes","alkenes","aliphatic compounds","aromatic compounds."]} titledesc='' reviews='19' />
 	<CourseCards fakeprice="175" price="125" time="10" title="Organic chemistry II" points={["alcohols","reactions of alcohols","aldehydes","ketones","carboxylic acids","esters","solubility and boiling points of homologous series","organic synthetic routes"]} titledesc='' reviews='16'/>
 	<CourseCards fakeprice="175" price="125" time="10" title="5th year revision course part I" points={["Atomic structure/the atom","electronic structure of the atom","ionic and covalent bonding and","stoichiometry"]} titledesc='Theory and exam questions/calculations' reviews='21' />
@@ -34,8 +38,7 @@ export default function Courses(){
 			<li className="sm:flex sm:justify-center pb-2.5">Free video solutions to material covered outside of the course content</li>
 			<li className="sm:flex sm:justify-center pb-2.5">Tips on how to get a H1</li>
 	</div>
-  </div>
-	</div>
+</div>
 	</>
 	)
 }
