@@ -10,7 +10,7 @@ export default function Courses(){
 	<div className="pb-20">
 		<Navbar />
 	</div>
-    <div aria-hidden="true" className="absolute inset-0 grid grid-cols-3">
+    <div aria-hidden="true" className="absolute inset-0 grid grid-cols-3 -space-x-52 ">
             <div className="blur-[106px] h-32 bg-cyan-500"></div>
             <div className="blur-[106px] h-56 bg-cyan-500"></div>
             <div className="blur-[106px] h-32 bg-cyan-500"></div>
