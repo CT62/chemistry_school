@@ -1,5 +1,7 @@
 'use client'
 import React, { useState } from 'react';
+import { useMyContext } from '@/app/Context';
+
 
 interface Props {
   title: string;
@@ -8,14 +10,14 @@ interface Props {
   price: string;
   fakeprice: string;
   titledesc: string;
-  reviews: string;
+  reviewscount: string;
+  reviews: string[];
 }
 
-const CourseCard = ({ fakeprice,title, points, time, price, titledesc, reviews }:Props) => {
+const CourseCard = ({ fakeprice,title, points, time, price, titledesc, reviews,reviewscount,}:Props) => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
-  const [showReviews, setReviews] = useState(false);
+  const {showReviews,setReviews} = useMyContext();
   const noPoints=points[0]=="" ? true: false;
-
   const handleAddToCart = () => {
     setIsAddedToCart(!isAddedToCart);
   };
@@ -60,29 +62,38 @@ const CourseCard = ({ fakeprice,title, points, time, price, titledesc, reviews }
 </svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" className="mr-0.5 mt-[0.25rem]" viewBox="0 0 16 16">
   <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/> 
 </svg>
-  <div className="text-black pl-1">(</div><button onClick={toggleReviews} className="text-black underline underline-offset-1">{reviews} reviews</button><div className="text-black">)</div>
+  <div className="text-black pl-1">(</div><button onClick={toggleReviews} className="text-black underline underline-offset-1">{reviewscount} reviews</button><div className="text-black">)</div>
   </div> 
 	</div>
-        {showReviews && (
-        <div className=" w-96 h-96 flex items-center justify-center">
+  {showReviews && (
+        <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 bg-transparent backdrop-blur-md">
           <div className="bg-white p-6 rounded shadow-md">
             <p className="text-lg font-bold">Reviews</p>
-            <button onClick={toggleReviews} className="flex justify-center">
+            <ul>
+              {reviews.map((review, index) => (
+                <li key={index}>{review}</li>
+              ))}
+            </ul>
+            <button onClick={toggleReviews} className="flex justify-center mt-4">
               Show less...
             </button>
           </div>
         </div>
       )}
+
     </div>
       <hr className="my-4 border-gray-300" />
       <div className="bottom-section flex justify-between items-end ">
         <div className="price-section flex">
+        {!showReviews &&(
           <p className="text-gray-400 relative mb-1 mr-2">
             <span className="line-through-text">€{fakeprice}</span>
           </p>
+          )}
+          
           <p className="text-black font-semibold">€{price}</p>
         </div>
-        <style jsx>{`
+          <style jsx>{`
           .line-through-text::after {
             content: '';
             position: absolute;
@@ -92,10 +103,10 @@ const CourseCard = ({ fakeprice,title, points, time, price, titledesc, reviews }
             border-bottom: 1px solid red;
           }
         `}</style>
-        <div className="add-to-cart-section">
+                <div className="add-to-cart-section">
           {
           <button
-            className='flex bg-gradient-to-r from-cyan-500 to-blue-500 text-gray-900 px-4 py-2 rounded focus:outline-none transition hover:bg-gray-400 text-white font-semibold'
+            className='flex bg-gradient-to-r from-cyan-500 to-blue-500 text-gray-900 px-4 py-2 rounded focus:outline-none transition hover:bg-gray-400 text-white font-semibold' 
             onClick={handleAddToCart}
           >
             Buy now
@@ -108,4 +119,5 @@ const CourseCard = ({ fakeprice,title, points, time, price, titledesc, reviews }
 };
 
 export default CourseCard;
+
 
