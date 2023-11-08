@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import { useMyContext } from '@/app/Context';
+import {ProfileReview} from '@/components/ProfileReview'
 
 
 interface Props {
@@ -10,11 +11,13 @@ interface Props {
   price: string;
   fakeprice: string;
   titledesc: string;
-  reviewscount: string;
+  reviewsCount: string;
   reviews: string[];
+  reviewerName: string;
+  review: string;
 }
 
-const CourseCard = ({ fakeprice,title, points, time, price, titledesc, reviews,reviewscount,}:Props) => {
+export function CourseCard({ fakeprice,title, points, time, price, titledesc, reviews,reviewscount,}:Props){
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const {showReviews,setReviews} = useMyContext();
   const noPoints=points[0]=="" ? true: false;
@@ -67,11 +70,11 @@ const CourseCard = ({ fakeprice,title, points, time, price, titledesc, reviews,r
 	</div>
   {showReviews && (
         <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 bg-transparent backdrop-blur-md">
-          <div className="bg-white p-6 rounded shadow-md">
-            <p className="text-lg font-bold">Reviews</p>
+          <div className="bg-white p-6 rounded shadow-md w-96 lg:w-1/2">
+            <p className="text-lg font-bold flex justify-center pb-2">Reviews</p>
             <ul>
               {reviews.map((review, index) => (
-                <li key={index}>{review}</li>
+                <ProfileReview id={index} review={review} name="name" />
               ))}
             </ul>
             <button onClick={toggleReviews} className="flex justify-center mt-4">
