@@ -13,8 +13,6 @@ interface Props {
   titledesc: string;
   reviewsCount: string;
   reviews: string[];
-  reviewerName: string;
-  review: string;
 }
 
 export function CourseCard({ fakeprice,title, points, time, price, titledesc, reviews,reviewsCount}:Props){
