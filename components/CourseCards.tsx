@@ -70,11 +70,11 @@ export function CourseCard({ fakeprice,title, points, time, price, titledesc, re
 	</div>
   {showReviews && (
         <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 bg-transparent backdrop-blur-md">
-          <div className="bg-white p-6 rounded shadow-md w-96 lg:w-1/2">
+          <div className="bg-white p-6 rounded shadow-md w-96 md:w-1/2">
             <p className="text-lg font-bold flex justify-center pb-2">Reviews</p>
             <ul>
-              {reviews.map((review, index) => (
-                <ProfileReview id={index} review={review} name="name" />
+              {reviews.map((review) => (
+                <ProfileReview review={review} name="name" />
               ))}
             </ul>
             <button onClick={toggleReviews} className="flex justify-center mt-4">
