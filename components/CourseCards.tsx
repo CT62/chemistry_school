@@ -26,7 +26,7 @@ export function CourseCard({ fakeprice,title, points, time, price, titledesc, re
     setReviews(!showReviews);
   };
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md flex flex-col">
+    <div className="bg-white p-6 rounded-lg shadow-md flex flex-col shadow-xl shadow-cyan-500">
       <div className="content-section flex-grow">
         <div className="title-section">
           <h2 className="text-xl font-bold text-sm pb-2">{title}</h2>
@@ -96,7 +96,7 @@ export function CourseCard({ fakeprice,title, points, time, price, titledesc, re
                 <div className="add-to-cart-section">
           {
           <button
-            className='flex bg-gradient-to-r from-cyan-500 to-blue-500 text-gray-900 px-4 py-2 rounded focus:outline-none transition hover:bg-gray-400 text-white font-semibold shadow-xl shadow-cyan-500' 
+            className='flex bg-gradient-to-r from-cyan-500 to-blue-500 text-gray-900 px-4 py-2 rounded focus:outline-none transition hover:bg-gray-400 text-white font-semibold' 
             onClick={handleAddToCart}
           >
             Buy now
