@@ -2,14 +2,12 @@
 import './courses.css'
 import Navbar from '@/components/Navbar'
 import CourseCards from '@/components/CourseCards'
-import { MyContextProvider } from '@/app/Context';
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 
 export default function Courses(){
 	return(
 	<>
-  <MyContextProvider>
 	<div className="pb-20">
 		<Navbar />
 	</div>
@@ -21,11 +19,11 @@ export default function Courses(){
 	<div className="relative py-16 text-white font-bold text-5xl flex justify-center">Courses</div>
 	<div className="container mx-auto">
 	<div className="relative grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-4" >
-  <CourseCards fakeprice="125" price="75" time="6" title="Organic chemistry I" points={["intro to organic chemistry","hydrocarbons: alkanes","reactions of alkanes","structural isomers and IUPAC","chloroalkanes","alkenes","aliphatic compounds","aromatic compounds."]} titledesc='' reviewsCount='19'reviews={[]} />
+  <CourseCards fakeprice="125" price="75" time="6" title="Organic chemistry I" points={["intro to organic chemistry","hydrocarbons: alkanes","reactions of alkanes","structural isomers and IUPAC","chloroalkanes","alkenes","aliphatic compounds","aromatic compounds."]} titledesc='' reviewsCount='19'reviews={[""]} />
 	<CourseCards fakeprice="175" price="125" time="10" title="Organic chemistry II" points={["alcohols","reactions of alcohols","aldehydes","ketones","carboxylic acids","esters","solubility and boiling points of homologous series","organic synthetic routes"]} titledesc='' reviewsCount='16' reviews={[]} />
 	<CourseCards fakeprice="175" price="125" time="10" title="5th year revision course part I" points={["Atomic structure/the atom","electronic structure of the atom","ionic and covalent bonding and","stoichiometry"]} titledesc='Theory and exam questions/calculations' reviewsCount='21' reviews={[]} />
 	<CourseCards fakeprice="175" price="125" time="10" title="5th year revision course part II/Experiment course part I" points={["acid and bases","acid-base titrations/volumetric analysis","redox volumetric","oxidation and reduction"]} titledesc='Calculation course only.' reviewsCount='16'reviews={[]} />
-	<CourseCards fakeprice="125" price="75" time="6" title="6th year course on fuels and thermochemistry" points={[""]} titledesc='Theory and exam questions/calculations.' reviewsCount='12' reviews={[]} />
+	<CourseCards fakeprice="125" price="75" time="6" title="6th year course on fuels and thermochemistry" points={[""]} titledesc='Theory and exam questions/calculations.' reviewsCount='12' reviews={["wsg"]} />
 	<CourseCards fakeprice="175" price="125" time="10" title="Experiment course part II" points={["all experiments, theory and exam questions."]} titledesc='External experiment teacher.' reviewsCount='11' reviews={[]} />
 		<CourseCards fakeprice="85" price="35" time="3" title="Ultimate H1 Guide" points={["what comes up every year ","question by questions ","chapter by chapter ","organic chemistry essentials/must knows before sitting the LC exam"]} titledesc='' reviewsCount='18' reviews={["Lena is an absolute gem when it comes to teaching chemistry. Her knack for breaking down complex topics and the genuine support she offers to students make her an outstanding educator. Truly grateful for her guidance!","Lena excels in chemistry education, not just due to her expertise but also for the remarkable support she offers students. Her skill in fostering a positive and effective learning environment is truly commendable.","Lena's online chemistry classes encourage a growth mindset. The organized curriculum, paired with Lena's teaching, creates an atmosphere that supports both academic and personal growth. This platform is great for those exploring online learning, providing a focus on growth-oriented education."]} />
 	</div>
@@ -41,7 +39,6 @@ export default function Courses(){
 			<li className="sm:flex sm:justify-center pb-2.5">Tips on how to get a H1</li>
 	</div>
 </div>
-</MyContextProvider>
 	</>
 	)
 }

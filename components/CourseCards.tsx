@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from 'react';
-import { useMyContext } from '@/app/Context';
 import {ProfileReview} from '@/components/ProfileReview'
 
 
@@ -17,7 +16,7 @@ interface Props {
 
 export function CourseCard({ fakeprice,title, points, time, price, titledesc, reviews,reviewsCount}:Props){
   const [isAddedToCart, setIsAddedToCart] = useState(false);
-  const {showReviews,setReviews} = useMyContext();
+  const [showReviews,setReviews] = useState(false);
   const noPoints=points[0]=="" ? true: false;
   const handleAddToCart = () => {
     setIsAddedToCart(!isAddedToCart);
@@ -27,7 +26,7 @@ export function CourseCard({ fakeprice,title, points, time, price, titledesc, re
     setReviews(!showReviews);
   };
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md flex flex-col shadow-xl shadow-cyan-500">
+    <div className="bg-white p-6 rounded-lg shadow-md flex flex-col">
       <div className="content-section flex-grow">
         <div className="title-section">
           <h2 className="text-xl font-bold text-sm pb-2">{title}</h2>
@@ -67,6 +66,7 @@ export function CourseCard({ fakeprice,title, points, time, price, titledesc, re
   </div> 
 	</div>
   {showReviews && (
+       <div className="relative"> 
         <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 bg-transparent backdrop-blur-md">
           <div className="bg-white p-6 rounded shadow-md w-96 md:w-1/2">
             <p className="text-lg font-bold flex justify-center pb-2">Reviews</p>
@@ -80,34 +80,23 @@ export function CourseCard({ fakeprice,title, points, time, price, titledesc, re
             </button>
           </div>
         </div>
+        </div>
       )}
 
     </div>
       <hr className="my-4 border-gray-300" />
       <div className="bottom-section flex justify-between items-end ">
         <div className="price-section flex">
-        {!showReviews &&(
-          <p className="text-gray-400 relative mb-1 mr-2">
-            <span className="line-through-text">€{fakeprice}</span>
+          <p className="text-gray-400 mb-1 mr-2">
+            <span className="line-through decoration-red-500">€{fakeprice}</span>
           </p>
-          )}
           
           <p className="text-black font-semibold">€{price}</p>
         </div>
-          <style jsx>{`
-          .line-through-text::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 50%;
-            border-bottom: 1px solid red;
-          }
-        `}</style>
                 <div className="add-to-cart-section">
           {
           <button
-            className='flex bg-gradient-to-r from-cyan-500 to-blue-500 text-gray-900 px-4 py-2 rounded focus:outline-none transition hover:bg-gray-400 text-white font-semibold' 
+            className='flex bg-gradient-to-r from-cyan-500 to-blue-500 text-gray-900 px-4 py-2 rounded focus:outline-none transition hover:bg-gray-400 text-white font-semibold shadow-md shadow-cyan-500' 
             onClick={handleAddToCart}
           >
             Buy now
