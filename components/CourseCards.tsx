@@ -104,7 +104,7 @@ export function CourseCard({ fakeprice,title, points, time, price, titledesc, re
   {showReviews && (
        <div className="relative"> 
         <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 bg-transparent backdrop-blur-md">
-          <div className="bg-white p-6 rounded shadow-md w-96 md:w-1/2">
+          <div className="bg-white outline outline-zinc-100 p-6 rounded shadow-md w-96 md:w-1/2">
             <p className="text-lg font-bold flex justify-center pb-2">Reviews</p>
             <ul>
               {reviews.map((review,index) => (
