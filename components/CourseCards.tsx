@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react';
-import {ProfileReview} from '@/components/ProfileReview'
-
+import Link from 'next/link'
+import { useGlobalCartlState } from '@/app/contexts/GlobalCartState';
 
 interface Props {
   title: string;
@@ -11,22 +11,34 @@ interface Props {
   fakeprice: string;
   titledesc?: string;
   reviewsCount: string;
-  reviews: string[];
-  names: string[];
   stars: number; 
+  courseID: string;
 }
 
-export function CourseCard({ fakeprice,title, points, time, price, titledesc, reviews, reviewsCount, names,stars}:Props){
+export function CourseCard({ fakeprice,title, points, time, price, titledesc, reviewsCount, stars, courseID}:Props){
   const [isAddedToCart, setIsAddedToCart] = useState(false);
-  const [showReviews,setReviews] = useState(false);
+  const {count,setCount} = useGlobalCartlState();
+  // const [showReviews,setReviews] = useState(false);
   const noPoints=points[0]=="" ? true: false;
   const handleAddToCart = () => {
     setIsAddedToCart(!isAddedToCart);
+    if(isAddedToCart){
+      setCount((prevCount) => prevCount - 1);
+    }else{
+      setCount((prevCount) => prevCount + 1);
+    }
+    console.log(count);
   };
 
-  const toggleReviews = () => {
+  /*const toggleReviews = () => {
     setReviews(!showReviews);
   };
+
+  const toggleFullReviews = () =>{
+    setFullReviews(!showFullReviews) 
+  };
+  */
+
 
   const renderStars =(count: number)=> {
     let starElements: JSX.Element[] = [];
@@ -98,10 +110,10 @@ export function CourseCard({ fakeprice,title, points, time, price, titledesc, re
     {renderStars(stars)?.map((star,index) =>(
           <div key={index}>{star}</div>
     ))}
-  <div className="text-black pl-1">(</div><button onClick={toggleReviews} className="text-black underline underline-offset-1">{reviewsCount} reviews</button><div className="text-black">)</div>
+  <div className="text-black pl-1">(</div><Link href={`/courses/${courseID}`} className="text-black underline underline-offset-1">{reviewsCount} reviews</Link><div className="text-black">)</div>
   </div> 
 	</div>
-  {showReviews && (
+        {/* {showReviews && (
        <div className="relative"> 
         <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 bg-transparent backdrop-blur-md">
           <div className="bg-white outline outline-zinc-100 p-6 rounded shadow-md w-auto md:w-1/2">
@@ -111,13 +123,13 @@ export function CourseCard({ fakeprice,title, points, time, price, titledesc, re
                 <ProfileReview key={index} review={review} name={names[index]}/>
                ))}
             </ul>
-            <button onClick={toggleReviews} className="flex justify-center mt-4">
+            <button onClick={toggleReviews} className="mt-4">
               Show less...
             </button>
           </div>
         </div>
         </div>
-      )}
+      )} */}
 
     </div>
       <hr className="my-4 border-gray-300" />
@@ -129,15 +141,18 @@ export function CourseCard({ fakeprice,title, points, time, price, titledesc, re
           
           <p className="text-black font-semibold">€{price}</p>
         </div>
-                <div className="add-to-cart-section">
-          {
+          <div className="add-to-cart-section">
           <button
             className='flex bg-gradient-to-r from-cyan-500 to-blue-500 text-gray-900 px-4 py-2 rounded focus:outline-none transition hover:bg-gray-400 text-white font-semibold' 
             onClick={handleAddToCart}
           >
-            Buy now
+          {!isAddedToCart && (
+            <p>Add To Cart</p>
+          )}
+          {isAddedToCart &&(
+            <p>Remove From Cart</p>
+          )}
           </button>
-          }
         </div> 
       </div>
     </div>
