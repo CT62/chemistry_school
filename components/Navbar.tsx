@@ -1,8 +1,9 @@
 'use client'
 import './global.css'
-import { useGlobalCartState } from '@/app/contexts/GlobalCartState';
+import useGlobalCartState from '@/app/contexts/GlobalCartState';
+
 export default function Header(){
-    const {count,setCount} = useGlobalCartlState();
+    const {count,setCount} = useGlobalCartState();
     return(
     <header>
         <nav className="z-10 w-full absolute bg-white">

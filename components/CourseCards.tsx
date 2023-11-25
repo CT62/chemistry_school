@@ -1,8 +1,7 @@
 'use client'
-import React, { useState } from 'react';
 import Link from 'next/link'
-import { useGlobalCartlState } from '@/app/contexts/GlobalCartState';
-
+import useGlobalCartState from '@/app/contexts/GlobalCartState';
+import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
 interface Props {
   title: string;
   points: string[];
@@ -17,28 +16,19 @@ interface Props {
 
 export function CourseCard({ fakeprice,title, points, time, price, titledesc, reviewsCount, stars, courseID}:Props){
   const [isAddedToCart, setIsAddedToCart] = useState(false);
-  const {count,setCount} = useGlobalCartlState();
-  // const [showReviews,setReviews] = useState(false);
+  const {count,setCount} = useGlobalCartState();
   const noPoints=points[0]=="" ? true: false;
   const handleAddToCart = () => {
     setIsAddedToCart(!isAddedToCart);
+    localStorage.setItem(`isAddedToCart${courseID}` , isAddedToCart.toString());
+    console.log(localStorage.getItem(`isAddedToCart${courseID}`)) 
     if(isAddedToCart){
       setCount((prevCount) => prevCount - 1);
     }else{
       setCount((prevCount) => prevCount + 1);
     }
-    console.log(count);
+    console.log(count)
   };
-
-  /*const toggleReviews = () => {
-    setReviews(!showReviews);
-  };
-
-  const toggleFullReviews = () =>{
-    setFullReviews(!showFullReviews) 
-  };
-  */
-
 
   const renderStars =(count: number)=> {
     let starElements: JSX.Element[] = [];
@@ -113,24 +103,6 @@ export function CourseCard({ fakeprice,title, points, time, price, titledesc, re
   <div className="text-black pl-1">(</div><Link href={`/courses/${courseID}`} className="text-black underline underline-offset-1">{reviewsCount} reviews</Link><div className="text-black">)</div>
   </div> 
 	</div>
-        {/* {showReviews && (
-       <div className="relative"> 
-        <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 bg-transparent backdrop-blur-md">
-          <div className="bg-white outline outline-zinc-100 p-6 rounded shadow-md w-auto md:w-1/2">
-            <p className="text-lg font-bold flex justify-center pb-2">Reviews</p>
-            <ul>
-              {reviews.map((review,index) => (
-                <ProfileReview key={index} review={review} name={names[index]}/>
-               ))}
-            </ul>
-            <button onClick={toggleReviews} className="mt-4">
-              Show less...
-            </button>
-          </div>
-        </div>
-        </div>
-      )} */}
-
     </div>
       <hr className="my-4 border-gray-300" />
       <div className="bottom-section flex justify-between items-end ">
@@ -146,10 +118,10 @@ export function CourseCard({ fakeprice,title, points, time, price, titledesc, re
             className='flex bg-gradient-to-r from-cyan-500 to-blue-500 text-gray-900 px-4 py-2 rounded focus:outline-none transition hover:bg-gray-400 text-white font-semibold' 
             onClick={handleAddToCart}
           >
-          {!isAddedToCart && (
+          {localStorage.getItem(`isAddedToCart${courseID}`)=="false" && (
             <p>Add To Cart</p>
           )}
-          {isAddedToCart &&(
+          {localStorage.getItem(`isAddedToCart${courseID}`)=="true" &&(
             <p>Remove From Cart</p>
           )}
           </button>

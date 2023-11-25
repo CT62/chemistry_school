@@ -13,7 +13,7 @@ const defaultValue: GlobalStateContextProps = {
 
 const GlobalStateContext = createContext(defaultValue);
 
-export const useGlobalCartState = (): GlobalStateContextProps => {
+export default function useGlobalCartState(){
   const context = useContext(GlobalStateContext);
   if (!context) {
     throw new Error('useGlobalCartState must be used within a GlobalCartStateProvider');
