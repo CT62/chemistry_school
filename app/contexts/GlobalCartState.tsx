@@ -1,5 +1,6 @@
-'use client'
+'use client';
 import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
+import Cookies from 'js-cookie';
 
 interface GlobalStateContextProps {
   count: number;
@@ -13,13 +14,13 @@ const defaultValue: GlobalStateContextProps = {
 
 const GlobalStateContext = createContext(defaultValue);
 
-export default function useGlobalCartState(){
+export default function useGlobalCartState() {
   const context = useContext(GlobalStateContext);
   if (!context) {
     throw new Error('useGlobalCartState must be used within a GlobalCartStateProvider');
   }
   return context;
-};
+}
 
 interface GlobalStateProviderProps {
   children: ReactNode;
@@ -27,12 +28,12 @@ interface GlobalStateProviderProps {
 
 export const GlobalCartStateProvider: React.FC<GlobalStateProviderProps> = ({ children }) => {
   const [count, setCount] = useState<number>(() => {
-    const storedCount = localStorage.getItem('cartCount');
+    const storedCount = Cookies.get('cartCount');
     return storedCount ? parseInt(storedCount, 10) : 0;
   });
 
   useEffect(() => {
-    localStorage.setItem('cartCount', count.toString());
+    Cookies.set('cartCount', count.toString(), { expires: 7 }); // Set expiration date (e.g., 7 days)
   }, [count]);
 
   return (
