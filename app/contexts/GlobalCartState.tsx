@@ -26,14 +26,24 @@ interface GlobalStateProviderProps {
 }
 
 export const GlobalCartStateProvider: React.FC<GlobalStateProviderProps> = ({ children }) => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []); // Run this effect only once when the component mounts
+
   const [count, setCount] = useState<number>(() => {
-      const storedCount = localStorage.getItem('cartCount');
+    const storedCount = isClient ? window.localStorage.getItem('cartCount') : null;
     return storedCount ? parseInt(storedCount, 10) : 0;
   });
 
   useEffect(() => {
-    localStorage.setItem('cartCount', count.toString());
-  }, [count]);
+    if (isClient) {
+      const expirationDate = new Date();
+      expirationDate.setDate(expirationDate.getDate() + 7); // Set expiration date to 7 days from now
+      localStorage.setItem('cartCount', count.toString());
+    }
+  }, [count, isClient]);
 
   return (
     <GlobalStateContext.Provider value={{ count, setCount }}>
