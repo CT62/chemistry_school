@@ -1,6 +1,5 @@
-'use client';
+'use client'
 import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
-import Cookies from 'js-cookie';
 
 interface GlobalStateContextProps {
   count: number;
@@ -28,12 +27,12 @@ interface GlobalStateProviderProps {
 
 export const GlobalCartStateProvider: React.FC<GlobalStateProviderProps> = ({ children }) => {
   const [count, setCount] = useState<number>(() => {
-    const storedCount = Cookies.get('cartCount');
+    const storedCount = window.localStorage.getItem('cartCount');
     return storedCount ? parseInt(storedCount, 10) : 0;
   });
 
   useEffect(() => {
-    Cookies.set('cartCount', count.toString(), { expires: 7 }); // Set expiration date (e.g., 7 days)
+    localStorage.setItem('cartCount', count.toString());
   }, [count]);
 
   return (
