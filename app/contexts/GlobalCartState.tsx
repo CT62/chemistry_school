@@ -27,7 +27,7 @@ interface GlobalStateProviderProps {
 
 export const GlobalCartStateProvider: React.FC<GlobalStateProviderProps> = ({ children }) => {
   const [count, setCount] = useState<number>(() => {
-    const storedCount = window.localStorage.getItem('cartCount');
+      const storedCount = localStorage.getItem('cartCount');
     return storedCount ? parseInt(storedCount, 10) : 0;
   });
 

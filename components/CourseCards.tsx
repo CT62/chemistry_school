@@ -24,14 +24,14 @@ export function CourseCard({ fakeprice,title, points, time, price, titledesc, re
 
   useEffect(() => {
     setIsClient(true);
-    const storedIsAddedToCart = window.localStorage.getItem(`isAddedToCart${courseID}`);
+    const storedIsAddedToCart = localStorage.getItem(`isAddedToCart${courseID}`);
     if (storedIsAddedToCart !== undefined) {
       setIsAddedToCart(storedIsAddedToCart === "true");
     }
   }, []); 
   const handleAddToCart = () => {
     setIsAddedToCart(!isAddedToCart);
-    window.localStorage.setItem(`isAddedToCart${courseID}`, (!isAddedToCart).toString());
+    localStorage.setItem(`isAddedToCart${courseID}`, (!isAddedToCart).toString());
     if (isAddedToCart) {
       setCount((prevCount) => prevCount - 1);
     } else {
@@ -127,11 +127,11 @@ export function CourseCard({ fakeprice,title, points, time, price, titledesc, re
           >
 
            
-          {isClient && window.localStorage.getItem(`isAddedToCart${courseID}`)=="false" &&(
+          {isClient && localStorage.getItem(`isAddedToCart${courseID}`)=="false" &&(
             <p>Add To Cart</p>
               
           )}
-          {isClient && window.localStorage.getItem(`isAddedToCart${courseID}`)=="true" &&(
+          {isClient && localStorage.getItem(`isAddedToCart${courseID}`)=="true" &&(
             <p>Remove From Cart</p>
           )}
           </button>
