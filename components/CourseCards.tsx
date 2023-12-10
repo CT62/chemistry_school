@@ -79,9 +79,7 @@ export function CourseCard({ fakeprice,title, points, time, price, titledesc, re
 	  <p>{time}hrs </p>
   </div>
     <div className="flex text-yellow-400">
-    {renderStars(stars)?.map((starin,index) =>(
-          <div key={index}>{starin}</div>
-    ))}
+    {renderStars(stars)?.map((starin,index) =>(<div key={index}>{starin}</div>))}
   <div className="text-black pl-1">(</div><Link href={`/courses/${courseID}`} className="text-black underline underline-offset-1">{reviewsCount} reviews</Link><div className="text-black">)</div>
 	</div>
     </div>
@@ -99,13 +97,8 @@ export function CourseCard({ fakeprice,title, points, time, price, titledesc, re
             className={`flex ${isClient && localStorage.getItem(`isPurchased${courseID}`)=="false"?'bg-gradient-to-r from-cyan-500 to-blue-500':'bg-green-400'} text-gray-900 px-4 py-2 rounded focus:outline-none transition text-white font-semibold`}
             onClick={handlePurchase}
           >
-
-          {isClient && localStorage.getItem(`isPurchased${courseID}`)=="false" &&(
-            <p>Buy now</p>
-          )}
-          {isClient && localStorage.getItem(`isPurchased${courseID}`)=="true" &&(
-            <p>Purchased</p>
-          )}
+          {isClient && localStorage.getItem(`isPurchased${courseID}`)=="false" &&(<p>Buy now</p>)}
+          {isClient && localStorage.getItem(`isPurchased${courseID}`)=="true" &&(<p>Purchased</p>)}
           </button>
         </div> 
       </div>
