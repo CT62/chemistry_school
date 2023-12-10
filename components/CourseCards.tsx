@@ -1,7 +1,6 @@
 'use client'
 import Link from 'next/link';
-import useGlobalCartState from '@/app/contexts/GlobalCartState';
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect,useRef } from 'react';
 
 
 interface Props {
@@ -19,26 +18,25 @@ interface Props {
 export function CourseCard({ fakeprice,title, points, time, price, titledesc, reviewsCount, stars, courseID}:Props){
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [isClient, setIsClient] = useState(false);
-  const { count, setCount } = useGlobalCartState();
-  const noPoints = points[0] === "" ? true : false;
+  const noPoints = points[0] === ""
 
   useEffect(() => {
     setIsClient(true);
-    const storedIsAddedToCart = localStorage.getItem(`isAddedToCart${courseID}`);
-    if (storedIsAddedToCart !== undefined) {
-      setIsAddedToCart(storedIsAddedToCart === "true");
+    let storedIsPurchased = localStorage.getItem(`isPurchased${courseID}`)
+    if(typeof storedIsPurchased === "undefined" || storedIsPurchased === null){
+      localStorage.setItem(`isPurchased${courseID}`,"false")
     }
   }, []); 
-  const handleAddToCart = () => {
+
+
+  const handlePurchase = () => {
     setIsAddedToCart(!isAddedToCart);
-    localStorage.setItem(`isAddedToCart${courseID}`, (!isAddedToCart).toString());
-    if (isAddedToCart) {
-      setCount((prevCount) => prevCount - 1);
-    } else {
-      setCount((prevCount) => prevCount + 1);
+    if(localStorage.getItem(`isPurchased${courseID}`)=="true"){
+      localStorage.setItem(`isPurchased${courseID}`,"false")
+    }else{
+      localStorage.setItem(`isPurchased${courseID}`,"true")
     }
   };
-
   const renderStars = (count: number) => {
     let starElements: JSX.Element[] = [];
     if (count % 1 !== 0) {
@@ -122,17 +120,15 @@ export function CourseCard({ fakeprice,title, points, time, price, titledesc, re
         </div>
           <div className="add-to-cart-section">
           <button
-            className='flex bg-gradient-to-r from-cyan-500 to-blue-500 text-gray-900 px-4 py-2 rounded focus:outline-none transition hover:bg-gray-400 text-white font-semibold' 
-            onClick={handleAddToCart}
+            className={`flex ${isClient && localStorage.getItem(`isPurchased${courseID}`)=="false"?'bg-gradient-to-r from-cyan-500 to-blue-500':'bg-green-400'} text-gray-900 px-4 py-2 rounded focus:outline-none transition text-white font-semibold`}
+            onClick={handlePurchase}
           >
 
-           
-          {isClient && localStorage.getItem(`isAddedToCart${courseID}`)=="false" &&(
-            <p>Add To Cart</p>
-              
+          {isClient && localStorage.getItem(`isPurchased${courseID}`)=="false" &&(
+            <p>Buy now</p>
           )}
-          {isClient && localStorage.getItem(`isAddedToCart${courseID}`)=="true" &&(
-            <p>Remove From Cart</p>
+          {isClient && localStorage.getItem(`isPurchased${courseID}`)=="true" &&(
+            <p>Purchased</p>
           )}
           </button>
         </div> 
