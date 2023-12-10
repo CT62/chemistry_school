@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link';
-import React, { useState,useEffect,useRef } from 'react';
+import React, { useState,useEffect } from 'react';
 import Star from "./star";
 import StarFill from "./star-fill";
 import StarHalf from "./star-half";
@@ -44,9 +44,7 @@ export function CourseCard({ fakeprice,title, points, time, price, titledesc, re
     let starElements: JSX.Element[] = [];
     if (count % 1 !== 0) {
       for (let i = 0; i < Math.floor(stars); i++) {starElements.push(<StarFill key={i} />)}
-
       starElements.push(<StarHalf key="half-star" />);
-
       for (let i = 0; i < 4 - Math.floor(stars); i++) {starElements.push(<Star key={i} />)}
     } else {
       for (let i = 0; i < count; i++) {starElements.push(<StarFill key={i} />)}
