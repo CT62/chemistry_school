@@ -4,7 +4,7 @@ import CourseCards from '@/components/CourseCards'
 
 export default function Courses(){
 	return(
-	<div className="bg-blue-500">
+	<div className="bg-[#1e42b0]">
 	<div className="pb-20">
 		<Navbar />
 	</div>
