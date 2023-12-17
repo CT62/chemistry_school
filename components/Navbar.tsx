@@ -1,10 +1,6 @@
 'use client'
-import { useEffect, useState } from 'react'
-import './global.css'
 
 export default function Header(){
-    const [isClient, setIsClient] = useState(false);
-
     return(
     <header>
         <nav className="z-10 w-full absolute bg-white">
@@ -40,10 +36,6 @@ export default function Header(){
                                     <a href="/about" className="block md:px-4 transition hover:text-primary">
                                         <span>About</span>
                                     </a>
-                                </li>
-                                <li>
-                                  <a href="/cart" className="block md:px-4 transition hover:text-primary">
-                                  </a>
                                 </li>
                             </ul>
                         </div>
