@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Elements } from '@stripe/react-stripe-js';
+import { checkout } from "../checkout"
 import Link from 'next/link';
 import Star from './star';
 import StarFill from './star-fill';
@@ -27,9 +29,9 @@ export function CourseCard({
   stars,
   courseID,
 }: Props) {
-  const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [isClient, setIsClient] = useState(false);
   const noPoints = points[0] === '';
+  const prices = ["price_1OPUpgF7RC2rD4L0iW3TPHTH","price_1OPUrMF7RC2rD4L08cHt5S2I","price_1OPUswF7RC2rD4L0eBe4DZc0","price_1OPUuQF7RC2rD4L0P9EDvddY","price_1OPUuvF7RC2rD4L0lDnw9Gg1","price_1OPUvLF7RC2rD4L03P5KCFWZ","price_1OPUwBF7RC2rD4L01HKIsyjM"];
 
   useEffect(() => {
     setIsClient(true);
@@ -40,7 +42,14 @@ export function CourseCard({
   }, []);
 
   const handlePurchase = () => {
-    setIsAddedToCart(!isAddedToCart);
+    checkout({
+      lineItems: [
+        {
+          price: prices[parseInt(courseID)],
+          quantity: 1,
+        }
+      ]
+    })
     const isPurchased = localStorage.getItem(`isPurchased${courseID}`) === 'true';
     localStorage.setItem(`isPurchased${courseID}`, isPurchased ? 'false' : 'true');
   };
