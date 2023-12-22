@@ -41,7 +41,10 @@ export function CourseCard({
     }
   }, []);
 
+
+
   const handlePurchase = () => {
+    if(localStorage.getItem(`isPurchased${courseID}`) === 'false'){
     checkout({
       lineItems: [
         {
@@ -50,9 +53,8 @@ export function CourseCard({
         }
       ]
     })
-    const isPurchased = localStorage.getItem(`isPurchased${courseID}`) === 'true';
-    localStorage.setItem(`isPurchased${courseID}`, isPurchased ? 'false' : 'true');
-  };
+    localStorage.setItem(`isPurchased${courseID}`,'true');
+  }};
 
   const renderStars = (count: number) => {
    const starElements: JSX.Element[] = [];
