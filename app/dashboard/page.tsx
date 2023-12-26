@@ -2,7 +2,7 @@
 
 import { useSession, signOut } from 'next-auth/react'
 
-const dashboard = () => {
+export default function Dashboard(){
   const { data:session } = useSession()
   console.log(session)
   console.log(session?.user)
@@ -15,4 +15,3 @@ const dashboard = () => {
   )
 }
 
-export default dashboard
