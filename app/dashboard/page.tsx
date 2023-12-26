@@ -9,7 +9,7 @@ const dashboard = () => {
   return (
     <div>
         <h1>Dashboard</h1>
-        <p>Hi {session?.user?.email}</p>
+        <p>Hi {session?.user?.name}</p>
         <button onClick={() => signOut()}>Sign Out</button>
     </div>
   )
