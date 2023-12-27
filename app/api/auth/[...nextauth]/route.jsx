@@ -24,6 +24,7 @@ export const authOptions = {
                     }
                 });
 
+
                 if (!user || !user?.hashedPassword) {
                     throw new Error('No user found')
                 }
