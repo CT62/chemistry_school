@@ -38,3 +38,9 @@ model Account {
 
   @@unique([provider, providerAccountId])
 }
+
+model Purchases {
+  id		    String  @id @default(auto()) @map("_id") @db.ObjectId
+  purchaseId        String  @db.ObjectId
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
