@@ -41,6 +41,6 @@ model Account {
 
 model Purchases {
   id		    String  @id @default(auto()) @map("_id") @db.ObjectId
-  purchaseId        String  @db.ObjectId
+  courseId          String 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
