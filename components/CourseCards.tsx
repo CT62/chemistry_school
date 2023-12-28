@@ -30,19 +30,10 @@ export function CourseCard({
   stars,
   courseID,
 }: Props) {
-  const {data: session,status} = useSession()
-  const [isClient, setIsClient] = useState(false);
+  const {data: session,status} = useSession();
+  const [isPurchased, setIsPurchased] = useState(false);
   const noPoints = points[0] === '';
   const prices = ["price_1OPUpgF7RC2rD4L0iW3TPHTH","price_1OPUrMF7RC2rD4L08cHt5S2I","price_1OPUswF7RC2rD4L0eBe4DZc0","price_1OPUuQF7RC2rD4L0P9EDvddY","price_1OPUuvF7RC2rD4L0lDnw9Gg1","price_1OPUvLF7RC2rD4L03P5KCFWZ","price_1OPUwBF7RC2rD4L01HKIsyjM"];
-
-  useEffect(() => {
-    setIsClient(true);
-    let storedIsPurchased = localStorage.getItem(`isPurchased${courseID}`);
-    if (storedIsPurchased === undefined || storedIsPurchased === null) {
-      localStorage.setItem(`isPurchased${courseID}`, 'false');
-    }
-  }, []);
-
 
   const handlePurchase = () => {
     if(status == "authenticated"){
@@ -124,11 +115,11 @@ export function CourseCard({
         </div>
         <div className="add-to-cart-section">
           <button
-            className={`flex ${isClient && localStorage.getItem(`isPurchased${courseID}`) === 'false' ? 'bg-gradient-to-r from-cyan-500 to-blue-500' : 'bg-green-400'} shadow-md text-gray-900 px-4 py-2 rounded focus:outline-none transition text-white font-semibold`}
+            className={`flex bg-gradient-to-r from-cyan-500 to-blue-500 shadow-md text-gray-900 px-4 py-2 rounded focus:outline-none transition text-white font-semibold`}
             onClick={handlePurchase}
           >
-            {isClient && localStorage.getItem(`isPurchased${courseID}`) === 'false' && <p>Buy now</p>}
-            {isClient && localStorage.getItem(`isPurchased${courseID}`) === 'true' && <p>Purchased</p>}
+            {status != "authenticated" || isPurchased==false && <p>Buy now</p>}
+            {status == "authenticated" && isPurchased==true  && <p>Purchased</p>}
           </button>
         </div>
       </div>

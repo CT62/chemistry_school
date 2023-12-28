@@ -1,6 +1,8 @@
 'use client'
+import {useSession, signOut} from 'next-auth/react'
 
 export default function Header(){
+    const {data: session,status} = useSession();
     return(
     <header>
         <nav className="z-10 w-full absolute bg-white">
@@ -37,9 +39,15 @@ export default function Header(){
                                         <span>About</span>
                                     </a>
                                 </li>
+				<div className="block md:px-4 transition hover:text-primary">
+				<li>
+				<div class="mb-6 w-8 h-8 overflow-hidden bg-gray-100 rounded-full">
+    <span class="font-medium text-gray-600">{session?.user?.name[0]}</span>
+</div>
+			   </li>
+			   </div>
                             </ul>
                         </div>
-
                     </div>
                 </div>
             </div>
