@@ -5,17 +5,17 @@ import bcrypt from 'bcrypt'
 
 export async function POST(request){
     const body = await request.json();
-    const { name, email, password } = body;
+    const { name,email, password } = body;
     console.log(name,email,password);
 	
 
-    if(!name || !email || !password) {
+    if(!name || !body.email || !password) {
         return new NextResponse('Missing Fields', { status: 400 })
     }
 
     const exist = await prisma.user.findUnique({
         where: {
-            email
+          email: email
         }
     });
 
