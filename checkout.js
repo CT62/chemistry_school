@@ -9,6 +9,13 @@ export async function checkout({lineItems}){
 		}
 		return stripePromise
 	}
+  // await fetch('http://localhost:3000/api/webhook', {
+      // method: 'POST',
+      // headers: { 'Content-Type': 'application/json' },
+      // body: JSON.stringify({
+        // courseId: courseID
+      // }),
+  // })
 
 	const stripe = await getStripe()
 

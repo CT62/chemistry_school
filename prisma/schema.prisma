@@ -9,7 +9,7 @@ datasource db {
 
 model User {
   id             String    @id @default(auto()) @map("_id") @db.ObjectId
-  name       String?
+  name           String?
   email          String?   @unique
   emailVerified  DateTime?
   image          String?
@@ -17,7 +17,8 @@ model User {
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
 
-  accounts Account[]
+  accounts  Account[]
+  purchases Purchase[]
 }
 
 model Account {
@@ -39,9 +40,22 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
-model Purchases {
+model Course {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  courseId     String
+  fakeprice    String
+  price        String
+  time         String
+  title        String
+  points       String[]
+  reviewsCount String
+  stars        Float
+  titleDesc    String
+}
+
+model Purchase {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   courseId String @db.ObjectId
   userId   String
-  user     User   @relation(fields: [userId], references: [id])
+  User     User   @relation(fields: [userId], references: [id])
 }
