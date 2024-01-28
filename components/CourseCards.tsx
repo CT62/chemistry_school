@@ -44,7 +44,7 @@ export default function CourseCard({
   const prices = ["price_1OPUpgF7RC2rD4L0iW3TPHTH","price_1OPUrMF7RC2rD4L08cHt5S2I","price_1OZLd1F7RC2rD4L0bvafXtmq","price_1OPUuQF7RC2rD4L0P9EDvddY","price_1OPUuvF7RC2rD4L0lDnw9Gg1","price_1OPUvLF7RC2rD4L03P5KCFWZ","price_1OPUwBF7RC2rD4L01HKIsyjM"];
 
   async function checkPurchased(){
-	let ispurchased = await fetch('http://127.0.0.1:3000/api/isPurchased',{
+	let ispurchased = await fetch('https://chemistry-school.vercel.app/api/isPurchased',{
 		method: 'POST',
 		headers:{'Content-Type':'application/json'},
 		body: JSON.stringify({'CourseID':courseID,'userEmail':session?.user?.email}),
