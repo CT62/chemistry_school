@@ -7,6 +7,7 @@ import Star from './star';
 import StarFill from './star-fill';
 import StarHalf from './star-half';
 import { useSession, signIn } from 'next-auth/react'
+import { parse } from 'path';
 
 interface Props {
   title: string;
@@ -44,13 +45,15 @@ export default function CourseCard({
   const handlePurchase = async () => {
   if (status === "authenticated") {
     checkout({
-      lineItems: [
-        {
-          price: prices[parseInt(courseID)],
-          quantity: 1,
-        }
-      ]
-    })
+    lineItems: [
+    {
+      price: prices[parseInt(courseID)],
+      quantity: 1,
+     }
+   ],
+    authSession: session?.user,
+    courseID,
+  })
   } else {
     setIsPurchased(true)
   }

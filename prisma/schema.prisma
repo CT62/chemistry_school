@@ -54,8 +54,9 @@ model Course {
 }
 
 model Purchase {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  courseId String @db.ObjectId
-  userId   String
-  User     User   @relation(fields: [userId], references: [id])
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  courseId  String 
+  userEmail String
+  User      User?   @relation(fields: [userId], references: [id])
+  userId    String? @db.ObjectId
 }

@@ -17,7 +17,12 @@ function classNames(...classes) {
 export default function Header() {
   const { data: session, status } = useSession();
   const name = session?.user?.name.split(" ");
-  const initials = name ? `${name[0][0].toUpperCase()}${name[1][0].toUpperCase()}` : '';
+  let initials;
+  try{
+    initials = name ? `${name[0][0].toUpperCase()}${name[1][0].toUpperCase()}` : '';
+  }catch{
+    initials = name ? `${name[0][0].toUpperCase()}${name[0][1].toUpperCase()}` : '';
+  }
   return (
     <Disclosure as="nav" className="z-10 w-full absolute bg-white">
       {({ open }) => (
