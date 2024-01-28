@@ -1,6 +1,6 @@
 'use client'
 import prisma from '../app/prisma/client'
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { checkout } from "../checkout"
 import Link from 'next/link';
 import Star from './star';
@@ -34,6 +34,7 @@ export default function CourseCard({
 }: Props) {
   const {data: session,status} = useSession();
   const [isPurchased, setIsPurchased] = useState(false);
+  const [isLoginVisable, setIsLoginVisable] = useState(false);
   const noPoints = points[0] === '';
 
   const [data, setData] = useState({
@@ -41,6 +42,27 @@ export default function CourseCard({
             password: ''
             })
   const prices = ["price_1OPUpgF7RC2rD4L0iW3TPHTH","price_1OPUrMF7RC2rD4L08cHt5S2I","price_1OZLd1F7RC2rD4L0bvafXtmq","price_1OPUuQF7RC2rD4L0P9EDvddY","price_1OPUuvF7RC2rD4L0lDnw9Gg1","price_1OPUvLF7RC2rD4L03P5KCFWZ","price_1OPUwBF7RC2rD4L01HKIsyjM"];
+
+  async function checkPurchased(){
+	let ispurchased = await fetch('http://127.0.0.1:3000/api/isPurchased',{
+		method: 'POST',
+		headers:{'Content-Type':'application/json'},
+		body: JSON.stringify({'CourseID':courseID,'userEmail':session?.user?.email}),
+	});
+	ispurchased = await ispurchased.json();
+	setIsPurchased(ispurchased.isPurchased);
+	return ispurchased.IsPurchased;
+  }
+
+  useEffect(() =>{
+  	checkPurchased();
+  },[])
+
+
+  const handlePopup = () =>{
+  	setIsLoginVisable(!isLoginVisable);
+  }
+
 
   const handlePurchase = async () => {
   if (status === "authenticated") {
@@ -54,8 +76,8 @@ export default function CourseCard({
     authSession: session?.user,
     courseID,
   })
-  } else {
-    setIsPurchased(true)
+  }else{
+  	handlePopup();
   }
 };
    const loginUser = async (e) => {
@@ -121,15 +143,15 @@ export default function CourseCard({
             </Link>
             )
           </div>
-          {isPurchased && (
-       <div className="relative text-black"> 
+          {isLoginVisable && (
+       <div id="loginPopup" className="relative text-black"> 
         <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 bg-transparent backdrop-blur-md">
           <div className="bg-white p-6 rounded shadow-lg w-96 md:w-1/2 lg:w-1/4">
-          <button onClick={()=>setIsPurchased(!isPurchased)}>
+	  <button onClick={handlePopup}>
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="18" height="18" viewBox="0 0 50 50">
 <path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z"></path>
 </svg>
-            </button>
+	   </button>
             <p className="flex justify-center font-semibold">Sign in to continue </p>
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form className="space-y-6" onSubmit={loginUser}>
@@ -202,8 +224,8 @@ export default function CourseCard({
         </div>
         <div className="add-to-cart-section">
           <button
-            className={`flex bg-gradient-to-r from-cyan-500 to-blue-500 shadow-md text-gray-900 px-4 py-2 rounded focus:outline-none transition text-white font-semibold`}
-            onClick={handlePurchase}
+	  className={`flex ${isPurchased ? 'bg-gradient-to-r from-green-500 to-light-green-500' : 'bg-gradient-to-r from-cyan-500 to-blue-500'} shadow-md text-gray-900 px-4 py-2 rounded focus:outline-none transition text-white font-semibold`}
+        onClick={handlePurchase}
           >
             {((status !== 'authenticated' && !isPurchased) || (status === 'authenticated' && !isPurchased)) && (<p>Buy now</p>)}
             {status == "authenticated" && isPurchased==true  && <p>Purchased</p>}
